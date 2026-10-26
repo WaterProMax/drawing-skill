@@ -1,0 +1,50 @@
+approved_token_source: references/visual-baseline.md
+inheritance: prohibited
+
+role_defaults:
+  figure_title: text.strong
+  section_heading: text.strong
+  card_heading: text.strong
+  body_text: text.primary
+  secondary_description: text.secondary
+  metadata: text.muted
+  formula: text.primary
+  technical_annotation: text.secondary
+  default_icon: blue.core
+  standard_border: blue.border
+  primary_border: blue.core
+  weak_group_boundary: blue.subtle
+  primary_flow: blue.core
+  dependency_reference: blue.medium
+
+identity_groups: []
+
+exceptions:
+  - element_id: null
+    property: null
+    token: null
+    reason: null
+    scope: local
+
+local_edit_scope:
+  targets: []
+  properties: []
+  preserve: []
+
+cross_module_role_matrix: []
+accent_contexts:
+  - id: null
+    accent_token: blue.core
+    reason: visual_identity
+    optional_state_meaning: null
+    closed_roles:
+      - identity_heading
+      - primary_icon
+      - primary_border
+      - local_structural_connector
+    excluded_reading_roles:
+      - body_text
+      - long_description
+      - formula
+      - technical_annotation
+    exceptions: []

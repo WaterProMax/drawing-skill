@@ -1,0 +1,34 @@
+task_mode: create-new
+purpose: ""
+diagram_type: architecture
+diagram_family: ""
+selected_framework: none
+framework_scope: ""
+source_of_truth: []
+known_uncertainty: []
+abstraction_level: module
+orientation: auto
+output_context: word-embedded-figure
+caption_external: true
+title_mode: compact
+chrome_profile: standard
+composition_mode: structural-first
+reference_mode: style-baseline-only
+approved_token_source: references/visual-baseline.md
+
+elements: []
+groups: []
+relations: []
+exact_text: []
+prohibited_additions: []
+
+color_policy:
+  mode: semantic-role-based
+  inheritance: prohibited
+  role_map: references/semantic-color-policy.md
+  identity_groups: []
+  exceptions: []
+  local_edit_scope: null
+
+semantic_review:
+  ready_to_generate: false

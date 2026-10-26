@@ -1,0 +1,17 @@
+regions:
+  - id: region-01
+    intended_change: none
+    expected_preservation: []
+    actual_change: none
+    unauthorized_changes: []
+    result: PASS
+
+requested_change_result: PASS
+immutable_region_result: PASS
+high_risk_result: PASS
+topology_result: PASS
+formula_result: PASS
+line_wrap_result: PASS
+hierarchy_result: PASS
+color_context_result: PASS
+final_decision: PASS

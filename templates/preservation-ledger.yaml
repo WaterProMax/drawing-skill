@@ -1,0 +1,15 @@
+baseline:
+  artifact_id: ""
+  artifact_version: ""
+
+regions:
+  - id: region-01
+    semantic_role: ""
+    mutable: false
+    locked_text: []
+    locked_formulas: []
+    locked_relations: []
+    locked_hierarchy: []
+    locked_wrap_policy: []
+    locked_color_roles: []
+    high_risk: false

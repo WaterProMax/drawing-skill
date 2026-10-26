@@ -1,0 +1,15 @@
+text_items:
+  - id: text-01
+    literal: ""
+    wrap_policy: locked-single-line
+    capitalization: exact
+    mutable: false
+
+formulas:
+  - id: formula-01
+    canonical_latex: ""
+    token_sequence: []
+    mutable: false
+
+ordered_steps: []
+hierarchy: []

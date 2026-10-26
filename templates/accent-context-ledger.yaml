@@ -1,0 +1,17 @@
+accent_contexts:
+  - id: context-01
+    accent_token: blue.core
+    reason: visual_identity
+    optional_state_meaning: null
+    closed_roles:
+      - identity_heading
+      - primary_icon
+      - primary_border
+      - local_structural_connector
+    excluded_reading_roles:
+      - body_text
+      - long_description
+      - formula
+      - technical_annotation
+      - metadata
+    exceptions: []

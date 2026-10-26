@@ -1,0 +1,8 @@
+diagram_family: ""
+source_completeness:
+  status: BLOCKED
+  missing_inputs: []
+family_gate:
+  mode: null
+  status: BLOCKED
+reference_mode: style-baseline-only

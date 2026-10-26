@@ -1,0 +1,18 @@
+relations:
+  - id: r01
+    source: ""
+    target: ""
+    relation: ""
+    direction: forward
+    line_style: solid
+    label: null
+    required: true
+
+endpoint_ledger:
+  - relation_id: r01
+    visible_source: null
+    visible_target: null
+    arrowhead_at: null
+    visible_line_style: null
+    traceable_without_guessing: false
+    result: REJECT

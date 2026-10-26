@@ -1,0 +1,35 @@
+task_mode: edit-existing
+source_artifact:
+  path: ""
+  version: ""
+  dimensions: null
+
+requested_changes: []
+
+mutable:
+  regions: []
+  elements: []
+  properties: []
+
+immutable:
+  regions: []
+  elements: []
+  properties:
+    - exact_text
+    - formulas
+    - topology
+    - hierarchy
+    - line_wraps
+    - spacing
+    - alignment
+    - color_roles
+
+edit_method:
+  preferred: deterministic-object-edit
+  fallback: localized-masked-edit
+  full_regeneration_allowed: false
+
+attempt_policy:
+  initial_edit: 1
+  max_local_repairs: 2
+  escalate_after_failure: true
