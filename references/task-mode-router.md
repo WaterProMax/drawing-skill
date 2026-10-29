@@ -72,3 +72,7 @@ edit-existing → reconstruct-approved
 ```
 
 A mode switch requires explicit user approval.
+
+## Visual preset is not a mode switch
+
+`visual_preset` defaults to `aicareer-blueprint`. Changing or overriding the visual preset does not switch task mode and does not relax preservation, completeness, or escalation rules.

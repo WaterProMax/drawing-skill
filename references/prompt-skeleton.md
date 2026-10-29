@@ -4,7 +4,9 @@
 TASK MODE
 create-new
 
-Create one standalone technical figure for a formal AICareer research-engineering document.
+Create one standalone technical figure for a formal technical document.
+Default visual_preset = aicareer-blueprint (AICareer Research Engineering Blueprint) unless the task explicitly supplies another visual_preset.
+A preset override does not waive source completeness, canonical content lock, or QA.
 
 TECHNICAL PURPOSE
 [exact purpose]
