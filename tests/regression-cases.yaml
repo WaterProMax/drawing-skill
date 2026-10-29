@@ -1,0 +1,166 @@
+version: 1
+skill_version: "0.8.0"
+purpose: >
+  Behavioral regression cases for drawing-skill governance. These cases specify
+  the routing and fidelity outcome an agent must produce. They are not executed
+  as a live image model. validate_structure.py checks that each case parses and
+  carries the required keys.
+
+cases:
+  - id: create_new_missing_source_facts
+    name: create-new missing source facts returns BLOCKED
+    task_mode: create-new
+    input: >
+      Draw a system architecture that shows the new ranking service calling
+      the feature store, with an evaluated accuracy comparison against the
+      old ranker and a feedback loop from online metrics back into training.
+      No contract, metric table, or source note is attached.
+    expected:
+      status: BLOCKED
+      required_action: >
+        Stop before generation. Source completeness is BLOCKED because the
+        mapping, evaluated comparison, and feedback loop have no explicit
+        evidence. Do not invent relations, metrics, or loops to make the
+        figure look complete. Ready to Generate must stay NO.
+      forbidden_actions:
+        - Invent the feature-store call or the accuracy comparison
+        - Draw a feedback loop the source does not describe
+        - Treat BLOCKED as a rendering failure and emit a placeholder figure
+
+  - id: edit_existing_local_text_fix
+    name: local text fix stays edit-existing with ledgers
+    task_mode: edit-existing
+    input: >
+      On the attached architecture figure, change the module title
+      检索服务 to 召回服务. Leave every other label, icon, border, formula,
+      connector, and module untouched.
+    expected:
+      status: PASS
+      required_action: >
+        Keep task mode edit-existing. Create an Edit Contract, a Preservation
+        Ledger, a Canonical Content Lock, and a Differential Verification
+        record, then change only that title. Full-image regeneration is
+        forbidden unless the user explicitly approves it. Differential
+        verification must answer what changed that was not supposed to change.
+      forbidden_actions:
+        - Silently convert the edit into create-new or full regeneration
+        - Redraw unrelated Chinese labels, icons, borders, formulas, or connectors
+        - Skip the Edit Contract, Preservation Ledger, or Differential Verification
+
+  - id: edit_existing_missing_source_artifact
+    name: edit with no usable source artifact is BLOCKED
+    task_mode: edit-existing
+    input: >
+      Fix the arrow on the architecture figure from last week. The image
+      file is not in the workspace and there is no vector export either.
+    expected:
+      status: BLOCKED
+      required_action: >
+        Return BLOCKED and ask for the actual source image, vector, or
+        document object. Do not reconstruct a lookalike from memory.
+      forbidden_actions:
+        - Regenerate a new figure and present it as the edited original
+        - Switch to reconstruct-approved without explicit user approval
+
+  - id: formula_distortion_escalates_deterministic
+    name: two failed formula repairs escalate to deterministic-render
+    task_mode: edit-existing
+    input: >
+      The loss formula on the figure dropped a subscript and swapped two
+      arguments. A masked local repair was tried once and the subscript was
+      still wrong. A second local generative repair moved the coefficient.
+      Do not try a third generative redraw.
+    expected:
+      status: REJECT
+      next_task_mode: deterministic-render
+      required_action: >
+        Reject the distorted formula. After the initial local edit and two
+        failed local generative repairs, escalate to deterministic-render
+        using LaTeX, MathJax, KaTeX, SVG, or another structured formula
+        renderer. Visual resemblance is not formula integrity.
+      forbidden_actions:
+        - Spend a third generative attempt redrawing the formula
+        - Hide the image-model failure with a full-image regeneration
+        - Accept the formula because it looks approximately right
+
+  - id: non_blue_share_color_qa
+    name: excess non-blue area or full-card fill is rejected
+    task_mode: create-new
+    input: >
+      Render the mechanism figure with the reference blueprint, but fill
+      every major card with semantic.positive and paint the primary flow
+      arrows orange so the non-blue visual share is about 35 percent.
+    expected:
+      status: REJECT
+      required_action: >
+        Color QA returns REJECT. Ordinary figures keep non-blue visual share
+        around 5 to 8 percent and normally below 10 percent. A full-card
+        non-blue fill, a complete major-module non-blue border, or a long
+        primary flow in a non-blue token is prohibited unless an explicit
+        exception is approved. Blueprint blue remains the structural system.
+      forbidden_actions:
+        - Approve a figure whose non-blue share is above about 10 percent
+        - Use a non-blue token as the fill of an entire card or module
+        - Recolor body text or formulas to match the card accent
+
+  - id: word_embedded_figure_chrome
+    name: Word 160mm figure rejects frame and duplicate title
+    task_mode: create-new
+    input: >
+      Export a standard word-embedded figure at about 160 mm width with an
+      external caption. The image also has a complete outer perimeter frame,
+      four large corner crosshairs, and an internal title that repeats the
+      caption verbatim.
+    expected:
+      status: REJECT
+      required_action: >
+        Reject the chrome. For output_context word-embedded-figure with
+        caption_external true, title_mode compact, and chrome_profile
+        standard, remove the complete perimeter frame, the four large corner
+        crosshairs, the decorative footer, and the duplicated full internal
+        title. The figure must stay readable at about 160 mm in Word or WPS.
+      forbidden_actions:
+        - Keep a complete outer perimeter frame on a standard Word figure
+        - Repeat the external caption as a full internal title
+        - Treat full chrome as the default for an ordinary embedded figure
+
+  - id: preset_override_keeps_governance
+    name: a non-default visual preset still blocks invented facts
+    task_mode: create-new
+    input: >
+      Use visual_preset = course-poster for a competition poster palette,
+      and draw a CRISP-DM lifecycle that includes a deployment phase and a
+      measured F1 even though the source only describes data preparation.
+    expected:
+      status: BLOCKED
+      required_action: >
+        Accept the preset override for appearance only. Source completeness
+        stays BLOCKED for the unevidenced deployment phase and F1 claim.
+        Do not force absent CRISP-DM phases. Task-mode routing, canonical
+        content lock, and deterministic escalation remain in force.
+      forbidden_actions:
+        - Drop the source completeness gate because the preset changed
+        - Force a decorative six-box CRISP-DM chain
+        - Invent the deployment phase or the F1 number
+
+  - id: dense_sequence_not_image_only
+    name: dense sequence diagram must not be image-only
+    task_mode: deterministic-render
+    input: >
+      Draw one sequence diagram with 9 participants and 14 messages,
+      including a parallel fragment and an alt fragment. Render the message
+      geometry with an image model so it matches the blueprint style.
+    expected:
+      status: REJECT
+      next_task_mode: deterministic-render
+      required_action: >
+        Image-only mode is allowed only when participants are at most 6,
+        messages are at most 8, and there is no complex parallel plus
+        loop or alt combination. Use a deterministic or hybrid skeleton and
+        do not let the image model redraw message geometry. If that skeleton
+        is unavailable, split, simplify, or return BLOCKED. Parallel
+        execution must not become serial chaining.
+      forbidden_actions:
+        - Let the image model redraw message geometry
+        - Flatten the parallel fragment into a single serial chain
+        - Stay in image-only mode past the participant and message limits

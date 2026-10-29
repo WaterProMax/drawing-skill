@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0
+
+- Renamed the skill to `drawing-skill` and aligned the declared version on `0.8.0` across `SKILL.md`, `README.md`, and this changelog. The previous name `aicareer-diagram-style` remains an alias.
+- Positioned the skill as general technical-diagram generation and fidelity-constrained editing. The AICareer Research Engineering Blueprint (`assets/reference-blueprint.png`) is the default visual preset (`visual_preset = aicareer-blueprint`). Projects, courses, and competitions may override the preset without waiving task-mode routing, the source completeness gate, canonical content lock, the immutable baseline, differential verification, or deterministic escalation.
+- Consolidated the short routing and gate notes into `references/diagram-routing.md` and `references/generation-gates.md`. Moved the relation ledger into `references/topology-preservation.md` and the semantic-color example into `references/semantic-color-policy.md`. Retired snippet filenames are no longer separate files; their rules are preserved in those consolidated documents.
+- Rewrote `README.md` in Chinese with the three-skill suite handoff (`dev-skill`, `writing-skill`, `drawing-skill`) and copy-ready prompts for `create-new`, `edit-existing`, and `deterministic-render`.
+- Added `tests/validate_structure.py`, `tests/regression-cases.yaml`, and `tests/README.md` for frontmatter, path, YAML, version, and governance-regression checks.
+
 ## 0.7.2
 
 - Added Blue Structural Dominance and Sparse Accent Policy.

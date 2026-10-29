@@ -1,14 +1,30 @@
 ---
-name: aicareer-diagram-style
-description: Create or edit semantically rigorous AICareer technical diagrams with a consistent Research Engineering Blueprint visual language. Distinguish new generation from constrained editing, lock critical text/formulas/topology, minimize regeneration scope, bind existing color tokens by global reading role and local accent context, run differential regression checks, and escalate to deterministic rendering when generative image models cannot guarantee fidelity.
+name: drawing-skill
+description: Use when creating or editing technical diagrams (architecture, mechanism, sequence, research, or experiment figures) under fidelity constraints. Default visual preset is the AICareer Research Engineering Blueprint (visual_preset = aicareer-blueprint, assets/reference-blueprint.png). Alias aicareer-diagram-style. Route create-new, edit-existing, reconstruct-approved, and deterministic-render; lock text, Chinese glyphs, formulas, and topology; verify edits differentially; escalate when generative images cannot guarantee fidelity. Projects, courses, and competitions may override the visual preset without dropping these gates.
 compatibility: Agent Skills-compatible agents. Best with tools that support local image editing, masks, vector/document objects, or reference images. If reliable editing is unavailable, produce a preservation contract and deterministic edit plan instead of silently regenerating the full artifact.
 metadata:
-  project: AICareer
-  version: "0.7.2"
+  project: drawing-skill
+  version: "0.8.0"
   mode: fidelity-constrained-generation-and-editing
+  visual_preset: aicareer-blueprint
+  alias: aicareer-diagram-style
 ---
 
-# AICareer Diagram Style Skill
+# Drawing Skill (`drawing-skill`)
+
+General technical diagram generation and fidelity-constrained editing.
+
+Default visual preset: **AICareer Research Engineering Blueprint**.
+
+```text
+visual_preset = aicareer-blueprint
+```
+
+Reference image: `assets/reference-blueprint.png`.
+
+Alias: `aicareer-diagram-style` is the previous skill name (through v0.7.x). Load this skill for either name. Install path may be `.agents/skills/drawing-skill/` or the legacy `.agents/skills/aicareer-diagram-style/`; both point at this same router.
+
+A project, course, or competition may override `visual_preset` with its own token table and reference image. The override changes appearance only. It does not waive task-mode routing, the source completeness gate, canonical content lock, the immutable baseline, differential verification, or deterministic escalation. If no preset is declared, use `aicareer-blueprint`.
 
 ## Purpose
 
@@ -17,7 +33,7 @@ Create or edit document-ready technical figures that:
 1. preserve exact technical meaning;
 2. preserve validated source artifacts during edits;
 3. use the smallest semantically authorized change surface;
-4. belong to one coherent AICareer visual family;
+4. belong to one coherent visual family (default preset `aicareer-blueprint`; overridable);
 5. remain readable at approximately 160 mm width in Word/WPS;
 6. use mature diagram/research frameworks when appropriate;
 7. stop rather than invent missing facts;
@@ -53,6 +69,17 @@ OR
 Never silently convert an edit into full regeneration.
 
 If the requested source artifact is missing, unusable, or not actually available, return `BLOCKED`.
+
+## Reference map
+
+Read the consolidated files below. Do not look for the retired snippet paths; their rules live in the file named here.
+
+| Consolidated file | Rules preserved from |
+|---|---|
+| `references/diagram-routing.md` | diagram type router, diagram types, family gates, framework routing examples, C4 / CRISP-DM / DSRM experts |
+| `references/generation-gates.md` | source completeness gate, semantic review gate, composition policy, output context profiles, reference image policy, sequence reliability |
+| `references/topology-preservation.md` | topology preservation and the relation ledger |
+| `references/semantic-color-policy.md` | semantic color policy and the color-classification example |
 
 ## Default workflow
 
@@ -101,8 +128,9 @@ source artifact validation
 - Do not change locked line breaks to solve layout pressure.
 - Do not solve a local edit by global regeneration without explicit approval.
 - Do not infer permission to redesign from a repair request.
-- Use only existing color tokens in `visual-baseline.md`.
+- Use only existing color tokens in the active visual preset. The default token table is `references/visual-baseline.md`.
 - A local edit must preserve unrelated text, icons, borders, formulas, connectors, and modules.
+- Overriding `visual_preset` does not disable the gates in this skill.
 
 ## Status policy
 
@@ -115,14 +143,16 @@ Use:
 
 `BLOCKED` means the source is incomplete, the requested artifact is unavailable, or the chosen rendering method cannot meet required fidelity without a deterministic alternative.
 
+The source completeness gate also uses `READY` / `READY_NEUTRAL` / `BLOCKED` before generation. See `references/generation-gates.md`. Those completeness codes do not replace `PASS` / `REVISE` / `REJECT`.
+
 ## Source completeness and family routing
 
 Read:
 
-- `references/source-completeness-gate.md`
-- `references/family-gates.md`
-- `references/diagram-type-router.md`
-- `references/diagram-types.md`
+- `references/diagram-routing.md`
+- `references/generation-gates.md`
+
+`diagram-routing.md` covers type selection, family gates, framework examples, and the C4 / DSRM / CRISP-DM experts. `generation-gates.md` covers the source completeness gate and the semantic review gate.
 
 Use C4 / DSRM / CRISP-DM only when they fit the actual question.
 
@@ -147,6 +177,8 @@ For `edit-existing`, create:
 - Differential Verification record.
 
 Use the templates in `templates/`.
+
+A local text fix still requires those four records. It is not permission to regenerate the figure.
 
 ## Minimal regeneration surface
 
@@ -226,7 +258,7 @@ Prefer LaTeX/MathJax/KaTeX/SVG or other deterministic formula rendering when exa
 
 ## Graph topology rule
 
-Read `references/topology-preservation.md` and `references/relation-ledger.md`.
+Read `references/topology-preservation.md` (topology policy and the relation ledger).
 
 Treat as semantic structure:
 
@@ -252,7 +284,7 @@ Read:
 - `references/color-consistency-qa.md`
 - `references/visual-context-closure.md`
 
-The existing token system remains authoritative.
+The active preset's token system remains authoritative. For the default preset, that system is `references/visual-baseline.md`.
 
 Color does not need a fixed global semantic meaning. When a local state/relation color meaning is explicitly declared, keep that mapping consistent within its scope.
 
@@ -260,11 +292,13 @@ The blueprint-blue family is the only default structural color system. Non-blue 
 
 Do not use non-blue for large card/module fills, complete major module borders, or long primary flow paths unless an explicit exception is approved.
 
+Non-blue visual share above about 10%, or a full-card non-blue fill, is a color-QA `REJECT`.
+
 Do not propagate context accent into body text, formulas, annotations, or the entire module structure.
 
 ## Output context
 
-Read `references/output-context-profiles.md`.
+Read `references/generation-gates.md` (output context profiles).
 
 Default:
 
@@ -275,7 +309,7 @@ title_mode = compact
 chrome_profile = standard
 ```
 
-For standard Word figures:
+For standard Word figures at about 160 mm width:
 
 - no complete perimeter frame;
 - no four large corner crosshairs;
@@ -284,7 +318,7 @@ For standard Word figures:
 
 ## Composition
 
-Read `references/composition-policy.md`.
+Read `references/generation-gates.md` (composition policy).
 
 Prefer:
 
@@ -303,7 +337,7 @@ Cards are justified only when the content has independent anatomy.
 
 ## Reference image
 
-Primary reference:
+Primary reference for the default preset:
 
 ```text
 assets/reference-blueprint.png
@@ -311,7 +345,7 @@ assets/reference-blueprint.png
 
 Use it for visual language, not topology/layout copying.
 
-Read `references/reference-image-policy.md`.
+Read `references/generation-gates.md` (reference image policy).
 
 When task topology substantially overlaps the reference, use `style-baseline-only`.
 
@@ -367,6 +401,8 @@ Always inspect:
 - similar-looking characters;
 - long locked single-line headings.
 
+Complex sequence diagrams are image-only only inside the limits in `references/generation-gates.md`. Otherwise escalate.
+
 ## Anti-regression loop rule
 
 If editing introduces a new defect:
@@ -386,6 +422,8 @@ Allow:
 - at most two local generative repair attempts.
 
 If still unstable, escalate to deterministic rendering.
+
+Formula distortion that survives those two local generative repairs escalates to `deterministic-render`. Do not spend a third generative attempt redrawing the formula.
 
 ## Deterministic escalation
 

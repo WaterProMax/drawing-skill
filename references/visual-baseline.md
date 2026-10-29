@@ -1,6 +1,12 @@
 # Visual Baseline — Research Engineering Blueprint
 
-The bundled `assets/reference-blueprint.png` is the visual reference.
+Default visual preset for `drawing-skill`:
+
+```text
+visual_preset = aicareer-blueprint
+```
+
+The bundled `assets/reference-blueprint.png` is the visual reference for that preset (AICareer Research Engineering Blueprint). A project, course, or competition may override `visual_preset` by supplying its own token table and reference image explicitly. An override replaces appearance only. It does not waive task-mode routing, the source completeness gate, canonical content lock, the immutable baseline, differential verification, or deterministic escalation. If no preset is declared, use the tokens in this file.
 
 ## Overall temperament
 

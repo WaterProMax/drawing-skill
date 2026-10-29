@@ -244,3 +244,27 @@ After generation/edit:
 - `PASS`: reading roles are globally consistent; each accent context is internally coherent; no accidental inheritance/spillover exists.
 - `REVISE`: visual identity or equivalent-role strategy is inconsistent, but meaning is intact.
 - `REJECT`: color changes technical meaning, creates a false hierarchy/state/relation, or a localized edit changes unrelated locked styling.
+
+Also `REJECT` when non-blue visual share exceeds the normal upper bound (about 10%) or when a full card/module is filled with a non-blue color. See `blue-structure-accent-policy.md` and `color-consistency-qa.md`.
+
+## Example — semantic color classification
+
+Formerly `example.md`. A Human-in-the-loop card with green feedback semantics:
+
+```yaml
+element:
+  id: human-review
+  state: positive
+  identity_group: human-feedback
+
+color_bindings:
+  heading_text: text.strong
+  body_text: text.primary
+  icon: semantic.positive
+  border: semantic.positive
+  feedback_connector: semantic.positive
+```
+
+The green border/icon/connector does not recolor the heading or body text.
+
+Under blue structural dominance, that green border is a short local accent segment, not a complete major-module border and not a full-card non-blue fill. If the card face itself is filled with `semantic.positive`, color QA returns `REJECT`.
